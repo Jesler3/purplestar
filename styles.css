@@ -114,7 +114,6 @@ ul{margin:0;padding:0}
   height:52px;
   display:block;
   object-fit:contain;
- 
 }
 
 .topbar__actions{
@@ -288,6 +287,14 @@ ul{margin:0;padding:0}
   font-size:14px;
 }
 
+/* NEW: stacked section head (used in How It Works) */
+.section__head--stack{
+  flex-direction:column;
+  align-items:flex-start;
+  justify-content:flex-start;
+}
+.section__head--stack .section__sub{max-width:720px}
+
 /* SERVICES */
 .grid{display:grid;gap:14px}
 .grid--services{grid-template-columns:repeat(5, minmax(0,1fr))}
@@ -336,7 +343,7 @@ ul{margin:0;padding:0}
   font-size:13px;
 }
 
-/* STEPS */
+/* STEPS (base) */
 .steps{display:grid;gap:14px;grid-template-columns:repeat(3,1fr);position:relative}
 .steps--line:before{
   content:"";
@@ -346,23 +353,76 @@ ul{margin:0;padding:0}
   height:1px;
   background:rgba(255,255,255,.10);
 }
+
+/* NEW: How It Works “flow” layout (single-row on desktop) */
+.steps--flow{
+  grid-template-columns:repeat(5, minmax(0, 1fr));
+  gap:12px;
+  align-items:stretch;
+}
+
+/* Step card upgrade (still compatible with other step layouts) */
 .step{
-  display:flex;gap:12px;align-items:flex-start;
+  display:flex;
+  gap:12px;
+  align-items:flex-start;
   background:rgba(255,255,255,.06);
   border:1px solid var(--border);
   border-radius:var(--radius);
   padding:16px;
   box-shadow:var(--shadow);
+  transition:transform .12s ease, border-color .12s ease, background .12s ease;
+  position:relative;
+  overflow:hidden;
 }
+.step:hover{
+  transform:translateY(-2px);
+  border-color:rgba(123,76,255,.30);
+  background:rgba(255,255,255,.075);
+}
+
+/* Subtle top sheen for a more “premium” look */
+.step::after{
+  content:"";
+  position:absolute;
+  inset:-1px -1px auto -1px;
+  height:46px;
+  background:linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,0));
+  pointer-events:none;
+  opacity:.55;
+}
+
 .step__num{
   width:40px;height:40px;border-radius:14px;
   display:grid;place-items:center;
-  background:rgba(123,76,255,.20);
-  border:1px solid rgba(123,76,255,.35);
-  font-weight:900;
+  background:linear-gradient(135deg, rgba(123,76,255,.35), rgba(90,47,230,.18));
+  border:1px solid rgba(123,76,255,.45);
+  font-weight:950;
+  box-shadow: 0 12px 22px rgba(0,0,0,.28);
+  flex:0 0 auto;
 }
-.step h3{margin:0 0 6px}
-.step p{margin:0;color:rgba(255,255,255,.82);line-height:1.45}
+
+.step__content{position:relative; z-index:1;}
+.step__content h3{margin:0 0 6px}
+.step__content p{margin:0;color:rgba(255,255,255,.82);line-height:1.45}
+
+/* Flow connectors (desktop only; avoids weirdness when wrapping) */
+@media (min-width: 1060px){
+  .steps--flow .step:not(:last-child)::before{
+    content:"";
+    position:absolute;
+    right:-10px;
+    top:50%;
+    width:18px;height:18px;
+    transform:translateY(-50%) rotate(45deg);
+    background:rgba(255,255,255,.055);
+    border-right:1px solid rgba(255,255,255,.14);
+    border-top:1px solid rgba(255,255,255,.14);
+    border-radius:4px;
+    box-shadow: 0 10px 18px rgba(0,0,0,.22);
+    z-index:2;
+  }
+}
 
 /* RATES */
 .rates{
@@ -601,16 +661,27 @@ input:focus,textarea:focus,select:focus{border-color:rgba(123,76,255,.55)}
   .hero__grid{grid-template-columns:1fr}
   .hero__card{max-width:520px}
   .grid--services{grid-template-columns:repeat(3,1fr)}
-  .steps{grid-template-columns:1fr}
+
+  /* keep How It Works from collapsing too hard */
+  .steps--flow{grid-template-columns:repeat(2, minmax(0, 1fr))}
   .steps--line:before{display:none}
+
   .section__head{flex-direction:column;align-items:flex-start}
   .section__sub{max-width:680px}
-  .trustbar__reviews{grid-template-columns:1fr}
+
+  /* reviews: 2 columns on tablet */
+  .trustbar__reviews{grid-template-columns:repeat(2, minmax(0, 1fr))}
 }
 @media (max-width: 760px){
   .grid--services{grid-template-columns:repeat(2,1fr)}
   .form-grid{grid-template-columns:1fr}
   .card__photo{height:150px}
+
+  /* How It Works: single column on mobile */
+  .steps--flow{grid-template-columns:1fr}
+
+  /* reviews: stack on mobile */
+  .trustbar__reviews{grid-template-columns:1fr}
 }
 @media (max-width: 520px){
   .grid--services{grid-template-columns:1fr}
