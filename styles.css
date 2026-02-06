@@ -112,10 +112,7 @@ ul{margin:0;padding:0}
 .brand__logo{
   width:52px;
   height:52px;
-  border-radius:14px;
-  outline: 1px solid rgba(255,255,255,.12);
-  outline-offset: 0;
-  box-shadow: 0 14px 28px rgba(0,0,0,.40);
+  
 }
 
 
