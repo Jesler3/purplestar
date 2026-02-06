@@ -15,13 +15,11 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png">
   <link rel="shortcut icon" href="/assets/favicon-32.png">
 
-
   <!-- Open Graph -->
   <meta property="og:title" content="PurpleStar Property Ops — Calgary Property Maintenance & Rental Turnovers" />
   <meta property="og:description" content="Move-out cleaning, turnovers & repairs, snow & ice removal, yard care, and junk removal/disposal. Built for landlords and property managers in Calgary." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://purplestar.ca/" />
-  <!-- Optional if you add a social preview image later -->
   <!-- <meta property="og:image" content="https://purplestar.ca/assets/og-image.jpg" /> -->
 
   <!-- Twitter -->
@@ -491,6 +489,57 @@
         </p>
       </div>
     </section>
+
+    <!-- TRUST + REVIEWS (BOTTOM OF PAGE, AFTER QUOTE) -->
+    <section class="section section--plate" id="reviews" aria-label="Trust and reviews">
+      <div class="container container--wide">
+        <header class="section__head">
+          <h2 class="section__title">Trusted by Local Owners</h2>
+          <p class="section__sub">Insured service, clear communication, and reliable scheduling.</p>
+        </header>
+
+        <div class="trustbar__top">
+          <div class="trustbar__badges" aria-label="Trust badges">
+            <span class="tbadge">Insured</span>
+            <span class="tbadge">Owner-operated</span>
+            <span class="tbadge">Fast quotes (same-day when possible)</span>
+            <span class="tbadge">Calgary + nearby towns</span>
+          </div>
+
+          <div class="trustbar__meta" aria-label="Review summary">
+            <span class="trustbar__count">3 reviews</span>
+            <span class="trustbar__dot" aria-hidden="true">•</span>
+            <a class="trustbar__link" href="#quote">Request a quote</a>
+          </div>
+        </div>
+
+        <div class="trustbar__reviews" aria-label="Customer reviews">
+          <figure class="review">
+            <div class="review__stars" aria-label="5 out of 5 stars">★★★★★</div>
+            <blockquote>
+              “<span class="review__text">PASTE REVIEW #1 HERE (keep it 1–2 sentences, specific and real).</span>”
+            </blockquote>
+            <figcaption class="review__who">— <span>First Name</span>, <span>Calgary</span></figcaption>
+          </figure>
+
+          <figure class="review">
+            <div class="review__stars" aria-label="5 out of 5 stars">★★★★★</div>
+            <blockquote>
+              “<span class="review__text">PASTE REVIEW #2 HERE (mention speed, communication, or rent-ready result).</span>”
+            </blockquote>
+            <figcaption class="review__who">— <span>First Name</span>, <span>Airdrie</span></figcaption>
+          </figure>
+
+          <figure class="review">
+            <div class="review__stars" aria-label="5 out of 5 stars">★★★★★</div>
+            <blockquote>
+              “<span class="review__text">PASTE REVIEW #3 HERE (mention reliability, scheduling, or photo updates).</span>”
+            </blockquote>
+            <figcaption class="review__who">— <span>First Name</span>, <span>Chestermere</span></figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer class="footer" aria-label="Footer">
@@ -512,5 +561,10 @@
   </div>
 
   <script defer src="main.js"></script>
+  <script>
+    // keep year working even if main.js changes later
+    const y = document.getElementById("year");
+    if (y) y.textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
