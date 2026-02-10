@@ -297,7 +297,10 @@ ul{margin:0;padding:0}
 
 /* SERVICES */
 .grid{display:grid;gap:14px}
-.grid--services{grid-template-columns:repeat(5, minmax(0,1fr))}
+.grid--services{
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
 
 .card{
   background:rgba(255,255,255,.06);
@@ -637,24 +640,38 @@ input:focus,textarea:focus,select:focus{border-color:rgba(123,76,255,.55)}
 }
 .nap a{text-decoration:underline}
 
-/* MOBILE CTA */
-.mobile-cta{display:none}
+/* STICKY CTA (mobile) */
+.sticky-cta{display:none}
+
 @media (max-width: 760px){
-  .mobile-cta{
-    position: fixed;
-    left: 12px; right: 12px; bottom: 12px;
-    display:grid;grid-template-columns: 1fr 1fr;gap:10px;z-index: 50;
+  .sticky-cta{
+    position:fixed;
+    left:12px; right:12px; bottom:12px;
+    display:grid;
+    grid-template-columns: 1fr 1fr 1.2fr;
+    gap:10px;
+    z-index:60;
   }
-  .mobile-cta a{
-    padding: 14px 14px;border-radius: 14px;text-align:center;
-    font-weight:900;border:1px solid rgba(255,255,255,.16);
+
+  .sticky-cta__btn{
+    padding:14px 12px;
+    border-radius:14px;
+    text-align:center;
+    font-weight:950;
+    border:1px solid rgba(255,255,255,.16);
     background: rgba(10, 6, 20, .74);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 14px 30px rgba(0,0,0,.35);
   }
-  .mobile-cta a:last-child{
+
+  .sticky-cta__btn--primary{
     background: linear-gradient(135deg, var(--brand), var(--brand2));
+    border-color: rgba(255,255,255,.18);
   }
-  body{padding-bottom: 86px;}
+
+  body{ padding-bottom: 96px; }
 }
+
 
 /* RESPONSIVE */
 @media (max-width: 1100px){
@@ -691,4 +708,22 @@ input:focus,textarea:focus,select:focus{border-color:rgba(123,76,255,.55)}
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce){
   *{transition:none !important;scroll-behavior:auto !important}
+}
+
+input[type="file"]{
+  padding:10px;
+  cursor:pointer;
+}
+input[type="file"]::file-selector-button{
+  margin-right:10px;
+  padding:10px 12px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,.16);
+  background: rgba(255,255,255,.06);
+  color: var(--text);
+  font-weight:900;
+}
+input[type="file"]::file-selector-button:hover{
+  border-color: rgba(123,76,255,.35);
+  background: rgba(255,255,255,.08);
 }
